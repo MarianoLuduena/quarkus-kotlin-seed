@@ -1,0 +1,30 @@
+quarkus:
+  application:
+    name: quarkus-kotlin-seed
+  test:
+    continuous-testing: disabled
+  log:
+    console:
+      json:
+        pretty-print: false
+        date-format: "YYYY-MM-dd HH:mm:ss"
+        exception-output-type: detailed_and_formatted
+  jaeger:
+    service-name: quarkus-kotlin-seed
+    sampler-type: const
+    sampler-param: 1
+    zipkin:
+      compatibility-mode: true
+    propagation: b3
+
+seed:
+  star-wars-repository:
+    base-url: https://swapi.dev/api
+    people-path: /people/{id}/
+
+"%dev":
+  quarkus:
+    log:
+      console:
+        json: false
+        format: "%d{yyyy-MM-dd HH:mm:ss,SSS} %-5p [%X{traceId},%X{spanId},%X{parentId}] (%t) [%c{3.}] %s%e%n"
